@@ -28,8 +28,10 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createSQLQuery(SQL).executeUpdate();
             session.getTransaction().commit();
         } catch (Exception e) {
-            if (session.getTransaction() != null) session.getTransaction().rollback();
+            if (session.getTransaction() != null) session.getTransaction();
             e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
@@ -42,6 +44,8 @@ public class UserDaoHibernateImpl implements UserDao {
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
@@ -56,6 +60,8 @@ public class UserDaoHibernateImpl implements UserDao {
         } catch (Exception e) {
             if (session.getTransaction() != null) session.getTransaction().rollback();
             e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
@@ -72,6 +78,8 @@ public class UserDaoHibernateImpl implements UserDao {
         } catch (Exception e) {
             if (session.getTransaction() != null) session.getTransaction().rollback();
             e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
